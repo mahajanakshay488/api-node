@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h4>Reg Form</h4>
+
+  <form action="/reg" method="POST">
+    <input type="text" name="name" placeholder="name">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit">
+  </form>
+
+  <hr>
+
+  <h4>Login Form</h4>
+
+  <form action="/login" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit">
+  </form>
+
+  <hr>
+  
+  <h4>Updation Form</h4>
+
+  <form id="updform" action="/#">
+    <input type="text" name="name" placeholder="new name">
+    <input type="submit">
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    
+    var form = document.querySelector('#updform');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      console.log(form.name.value);
+
+      axios.put('/update', {name: form.name.value})
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+        console.log('done');
+      });
+
+    });
+  </script>
+</body>
+</html>
